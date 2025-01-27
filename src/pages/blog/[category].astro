@@ -41,9 +41,7 @@ const filteredPosts = allPosts.filter(
                     filteredPosts.length > 0 ? (
                         <ul class="flex flex-col gap-4">
                             {filteredPosts.map((post) => (
-                                <li key={post.slug}>
-                                    <ArrowCard entry={mapToCardEntry(post)} />
-                                </li>
+                                <ArrowCard entry={mapToCardEntry(post)} />
                             ))}
                         </ul>
                     ) : (

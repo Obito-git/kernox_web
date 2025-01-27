@@ -1,19 +1,9 @@
 ---
-import { getCollection } from "astro:content";
 import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
-import {
-  SITE,
-  HOME,
-  SOCIALS,
-  CATEGORY_CARD_ENTRIES,
-  PostCategory,
-} from "@consts";
-import Category from "./blog/[category].astro";
-
-const blog = (await getCollection("blog")).filter((post) => !post.data.draft);
+import { HOME, CATEGORY_CARD_ENTRIES, PostCategory } from "@consts";
 ---
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
