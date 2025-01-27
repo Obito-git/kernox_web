@@ -1,0 +1,56 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import ArrowCard from "@components/ArrowCard.astro";
+import { mapToCardEntry } from "@content/config";
+
+export async function getStaticPaths() {
+    const allPosts = (await getCollection("blog")).filter(
+        (post) => !post.data.draft,
+    );
+    const categories = new Set(allPosts.map((post) => post.data.category));
+    return Array.from(categories).map((category) => ({
+        params: { category },
+    }));
+}
+
+const allPosts = (await getCollection("blog")).filter(
+    (post) => !post.data.draft,
+);
+
+const { category } = Astro.params;
+const selectedCategory = category as string;
+
+const filteredPosts = allPosts.filter(
+    (post) => post.data.category === selectedCategory,
+);
+---
+
+<PageLayout
+    title={`Blog - ${selectedCategory}`}
+    description={`Posts under ${selectedCategory}`}
+>
+    <Container>
+        <div class="space-y-10">
+            <div class="animate font-semibold text-black dark:text-white">
+                Blog - {selectedCategory}
+            </div>
+            <div class="space-y-4">
+                {
+                    filteredPosts.length > 0 ? (
+                        <ul class="flex flex-col gap-4">
+                            {filteredPosts.map((post) => (
+                                <li key={post.slug}>
+                                    <ArrowCard entry={mapToCardEntry(post)} />
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No posts found in this category.</p>
+                    )
+                }
+            </div>
+        </div>
+    </Container>
+</PageLayout>

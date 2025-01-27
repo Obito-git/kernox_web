@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import Container from "@components/Container.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import ArrowCard from "@components/ArrowCard.astro";
+import Link from "@components/Link.astro";
+import {
+  SITE,
+  HOME,
+  SOCIALS,
+  CATEGORY_CARD_ENTRIES,
+  PostCategory,
+} from "@consts";
+import Category from "./blog/[category].astro";
+
+const blog = (await getCollection("blog")).filter((post) => !post.data.draft);
+---
+
+<PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+  <Container>
+    <h4 class="animate font-semibold text-black dark:text-white">
+      Welcome to the Rust Kernel from Scratch series <span class="text-xl"
+        >👋🏻</span
+      >
+    </h4>
+    <div class="space-y-16">
+      <section>
+        <article class="space-y-4">
+          <p class="animate">
+            This series is focused more on 32-bit in the early stages. 64-bit
+            support will come later, along with implementations for ARM or
+            RISC-V. Have fun!
+          </p>
+        </article>
+      </section>
+
+      <section class="animate space-y-6">
+        <div class="flex flex-wrap gap-y-2 items-center justify-between">
+          <h5 class="font-semibold text-black dark:text-white">Categories</h5>
+          <Link href="/blog"> See all posts </Link>
+        </div>
+        <ul class="flex flex-col gap-4">
+          {
+            Object.values(PostCategory).map((category: PostCategory) => (
+              <li>
+                <ArrowCard entry={CATEGORY_CARD_ENTRIES[category]} />
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </div>
+  </Container>
+</PageLayout>
