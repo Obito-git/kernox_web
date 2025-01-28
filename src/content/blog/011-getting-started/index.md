@@ -2,7 +2,8 @@
 title: "Getting started"
 description: "Hit the ground running."
 category: "X86"
-subcategory: "Category 1"
+subcategory: "draft"
+draft: true
 ---
 
 The basic configuration of Nano is pretty simple.

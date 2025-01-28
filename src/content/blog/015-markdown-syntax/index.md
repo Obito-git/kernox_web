@@ -2,7 +2,8 @@
 title: "Markdown syntax guide"
 description: "Get started writing content in markdown."
 category: "X86"
-subcategory: "Category 2"
+subcategory: "draft"
+draft: true
 ---
 
 ---

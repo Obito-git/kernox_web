@@ -1,8 +1,9 @@
 ---
 title: "Draft example"
 description: "Setting draft flag to true to hide this post."
-category: "X86_64"
-subcategory: "Category 5"
+category: "X86"
+subcategory: "draft"
+draft: true
 ---
 
 This post is to demonstrate the year sorting capabilities.

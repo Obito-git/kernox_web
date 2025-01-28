@@ -1,9 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
-import ArrowCard from "@components/ArrowCard.astro";
-import { mapToCardEntry } from "@content/config";
+import CategoryList from "@components/CategoryList.astro";
 
 export async function getStaticPaths() {
     const allPosts = (await getCollection("blog")).filter(
@@ -22,8 +21,31 @@ const allPosts = (await getCollection("blog")).filter(
 const { category } = Astro.params;
 const selectedCategory = category as string;
 
-const filteredPosts = allPosts.filter(
-    (post) => post.data.category === selectedCategory,
+interface SubcategoryGroup {
+    [subcategory: string]: CollectionEntry<"blog">[];
+}
+
+interface CategoryGroup {
+    [category: string]: SubcategoryGroup;
+}
+
+const groupedPosts: CategoryGroup = allPosts.reduce(
+    (acc: CategoryGroup, post) => {
+        const { category, subcategory } = post.data;
+        const safeSubcategory = subcategory || "Uncategorized";
+
+        if (!acc[category]) {
+            acc[category] = {};
+        }
+
+        if (!acc[category][safeSubcategory]) {
+            acc[category][safeSubcategory] = [];
+        }
+
+        acc[category][safeSubcategory].push(post);
+        return acc;
+    },
+    {},
 );
 ---
 
@@ -33,22 +55,15 @@ const filteredPosts = allPosts.filter(
 >
     <Container>
         <div class="space-y-10">
-            <div class="animate font-semibold text-black dark:text-white">
+            <h1
+                class="animate font-semibold text-black dark:text-white text-3xl"
+            >
                 Blog - {selectedCategory}
-            </div>
-            <div class="space-y-4">
-                {
-                    filteredPosts.length > 0 ? (
-                        <ul class="flex flex-col gap-4">
-                            {filteredPosts.map((post) => (
-                                <ArrowCard entry={mapToCardEntry(post)} />
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>No posts found in this category.</p>
-                    )
-                }
-            </div>
+            </h1>
+            <CategoryList
+                groupedPosts={groupedPosts}
+                selectedCategory={selectedCategory}
+            />
         </div>
     </Container>
 </PageLayout>

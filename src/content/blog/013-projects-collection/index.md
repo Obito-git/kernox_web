@@ -2,7 +2,8 @@
 title: "Projects Collection"
 description: "How to add projects to your portfolio."
 category: "X86"
-subcategory: "Category 1"
+subcategory: "draft"
+draft: true
 ---
 
 The `projects` collections is found in `src/content/projects`.

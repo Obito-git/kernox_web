@@ -2,7 +2,8 @@
 title: "Work Collection"
 description: "How to add work experience."
 category: "X86"
-subcategory: "Category 2"
+subcategory: "draft"
+draft: true
 ---
 
 The `work` collections is found in `src/content/work`.

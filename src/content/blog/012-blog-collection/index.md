@@ -2,7 +2,8 @@
 title: "Blog Collection"
 description: "How to add posts to your blog."
 category: "X86"
-subcategory: "Category 1"
+subcategory: "draft"
+draft: true
 ---
 
 The `blog` collections is found in `src/content/blog`.
