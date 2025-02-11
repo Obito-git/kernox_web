@@ -2,44 +2,54 @@
 import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
-import {HOME_PAGE_METADATA, CATEGORY_CARD_ENTRIES, PostCategory} from "@consts";
+import { PAGE_METADATA, CATEGORY_CARD_ENTRIES, PostCategory } from "@consts";
 ---
 
-<PageLayout title={HOME_PAGE_METADATA.TITLE} description={HOME_PAGE_METADATA.DESCRIPTION}>
+<PageLayout
+    title={PAGE_METADATA.home.title}
+    description={PAGE_METADATA.home.description}
+>
     <Container>
         <h4 class="animate font-semibold text-black dark:text-white">
-            Welcome to the Rust corner <span class="text-xl">👋🏻</span
-        >
+            Welcome to the Rust corner <span class="text-xl">👋🏻</span>
         </h4>
         <div class="space-y-16">
             <section>
                 <article class="space-y-4">
                     <p class="animate">
-                        This series is intended to focus on building a Rust kernel from scratch for 32-bit systems in
-                        its early stages.
-                        64-bit support will come later, probably along with implementations for ARM or RISC-V.
+                        This series is intended to focus on building a Rust
+                        kernel from scratch for 32-bit systems in its early
+                        stages. 64-bit support will come later, probably along
+                        with implementations for ARM or RISC-V.
                     </p>
                     <p class="animate">
-                        However, I don't have enough time right now to make it as polished as I envision it.
-                        I will mainly publish my LeetCode solutions here until my summer vacation in 2025.
+                        However, I don't have enough time right now to make it
+                        as polished as I envision it. I will mainly publish my
+                        LeetCode solutions here until my summer vacation in
+                        2025.
                     </p>
                     <p class="animate">
-                        I plan to keep some kernel pages as a reminder to work on it every time I visit this site. Have
-                        fun!
+                        I plan to keep some kernel pages as a reminder to work
+                        on it every time I visit this site. Have fun!
                     </p>
                 </article>
-
             </section>
 
             <section class="animate space-y-6">
-                <h5 class="font-semibold text-black dark:text-white">Categories</h5>
+                <h5 class="font-semibold text-black dark:text-white">
+                    Categories
+                </h5>
                 <ul class="flex flex-col gap-4">
                     {
-                        Object.values(PostCategory).map((category: PostCategory) => (
+                        Object.values(PostCategory).map(
+                            (category: PostCategory) => (
                                 <li>
-                                    <ArrowCard entry={CATEGORY_CARD_ENTRIES[category]}/>
+                                    <ArrowCard
+                                        entry={CATEGORY_CARD_ENTRIES[category]}
+                                    />
                                 </li>
-                        ))
+                            ),
+                        )
                     }
                 </ul>
             </section>

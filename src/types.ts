@@ -1,21 +1,29 @@
 export type Site = {
-  NAME: string;
-  SLUG: string;
-  EMAIL: string;
+    name: string;
+    slug: string;
+    email: string;
 };
 
+export enum SitePage {
+    HOME = "home",
+    OS = "os",
+    ABOUT = "about",
+    LEETCODE = "leetcode",
+}
+
 export type Metadata = {
-  TITLE: string;
-  DESCRIPTION: string;
+    title: string;
+    description: string;
+    url: string;
 };
 
 export type Socials = {
-  NAME: string;
-  HREF: string;
+    name: string;
+    href: string;
 }[];
 
 export interface CardEntry {
-  title: string;
-  description: string;
-  url: string;
+    title: string;
+    description: string;
+    url: string;
 }

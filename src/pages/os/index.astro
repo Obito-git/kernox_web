@@ -3,11 +3,9 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import CategoryList from "@components/CategoryList.astro";
-import { OS_PAGE_METADATA } from "@consts";
+import { PAGE_METADATA } from "@consts";
 
-const allPosts = (await getCollection("os")).filter(
-  (post) => !post.data.draft,
-);
+const allPosts = (await getCollection("os")).filter((post) => !post.data.draft);
 
 interface SubcategoryGroup {
   [subcategory: string]: CollectionEntry<"os">[];
@@ -37,7 +35,7 @@ const groupedPosts: CategoryGroup = allPosts.reduce(
 );
 ---
 
-<PageLayout title={OS_PAGE_METADATA.TITLE} description={OS_PAGE_METADATA.DESCRIPTION}>
+<PageLayout title={PAGE_METADATA.os.title} description={PAGE_METADATA.os.title}>
   <Container>
     <div class="space-y-10">
       <h1 class="animate font-semibold text-black dark:text-white text-3xl">

@@ -1,11 +1,13 @@
 ---
 import Container from "@components/Container.astro";
+import { PAGE_METADATA } from "@consts";
 import PageLayout from "@layouts/PageLayout.astro";
-import {ABOUT_ME_PAGE_METADATA} from "@consts";
-import {LEETCODE_PAGE_METADATA} from "../../consts";
 ---
 
-<PageLayout title={LEETCODE_PAGE_METADATA.TITLE} description={ABOUT_ME_PAGE_METADATA.DESCRIPTION}>
+<PageLayout
+    title={PAGE_METADATA.leetcode.title}
+    description={PAGE_METADATA.leetcode.description}
+>
     <Container>
         <h4 class="animate font-semibold text-black dark:text-white">
             Bonjour <span class="text-xl">👋🏻</span>
@@ -13,12 +15,9 @@ import {LEETCODE_PAGE_METADATA} from "../../consts";
         <div class="space-y-16">
             <section>
                 <article class="space-y-4">
-                    <p class="animate">
-                        LEETCODE PAGE
-                    </p>
+                    <p class="animate">LEETCODE PAGE</p>
                 </article>
             </section>
-
         </div>
     </Container>
 </PageLayout>
