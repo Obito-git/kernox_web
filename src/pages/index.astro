@@ -3,42 +3,48 @@ import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
-import { HOME, CATEGORY_CARD_ENTRIES, PostCategory } from "@consts";
+import {HOME, CATEGORY_CARD_ENTRIES, PostCategory} from "@consts";
 ---
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
-  <Container>
-    <h4 class="animate font-semibold text-black dark:text-white">
-      Welcome to the Rust Kernel from Scratch series <span class="text-xl"
-        >👋🏻</span
-      >
-    </h4>
-    <div class="space-y-16">
-      <section>
-        <article class="space-y-4">
-          <p class="animate">
-            This series is focused more on 32-bit in the early stages. 64-bit
-            support will come later, along with implementations for ARM or
-            RISC-V. Have fun!
-          </p>
-        </article>
-      </section>
+    <Container>
+        <h4 class="animate font-semibold text-black dark:text-white">
+            Welcome to the Rust corner <span class="text-xl">👋🏻</span
+        >
+        </h4>
+        <div class="space-y-16">
+            <section>
+                <article class="space-y-4">
+                    <p class="animate">
+                        This series is intended to focus on building a Rust kernel from scratch for 32-bit systems in its early stages.
+                        64-bit support will come later, probably along with implementations for ARM or RISC-V.
+                    </p>
+                    <p class="animate">
+                        However, I don't have enough time right now to make it as polished as I envision it.
+                        I will mainly publish my LeetCode solutions here until my summer vacation in 2025.
+                    </p>
+                    <p class="animate">
+                        I plan to keep some kernel pages as a reminder to work on it every time I visit this site. Have fun!
+                    </p>
+                </article>
 
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">Categories</h5>
-          <Link href="/blog"> See all posts </Link>
+            </section>
+
+            <section class="animate space-y-6">
+                <div class="flex flex-wrap gap-y-2 items-center justify-between">
+                    <h5 class="font-semibold text-black dark:text-white">Categories</h5>
+                    <Link href="/blog"> See all posts</Link>
+                </div>
+                <ul class="flex flex-col gap-4">
+                    {
+                        Object.values(PostCategory).map((category: PostCategory) => (
+                                <li>
+                                    <ArrowCard entry={CATEGORY_CARD_ENTRIES[category]}/>
+                                </li>
+                        ))
+                    }
+                </ul>
+            </section>
         </div>
-        <ul class="flex flex-col gap-4">
-          {
-            Object.values(PostCategory).map((category: PostCategory) => (
-              <li>
-                <ArrowCard entry={CATEGORY_CARD_ENTRIES[category]} />
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </div>
-  </Container>
+    </Container>
 </PageLayout>
