@@ -2,7 +2,7 @@ import { PostCategory, SubCategory } from "@consts";
 import type { CardEntry } from "@types";
 import { defineCollection, z, type CollectionEntry } from "astro:content";
 
-const blog = defineCollection({
+const os = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
@@ -13,7 +13,7 @@ const blog = defineCollection({
   }),
 });
 
-export function mapToCardEntry(schema: CollectionEntry<"blog">): CardEntry {
+export function mapToCardEntry(schema: CollectionEntry<"os">): CardEntry {
   return {
     title: schema.data.title,
     description: schema.data.description,
@@ -21,4 +21,4 @@ export function mapToCardEntry(schema: CollectionEntry<"blog">): CardEntry {
   };
 }
 
-export const collections = { blog };
+export const collections = { os: os };

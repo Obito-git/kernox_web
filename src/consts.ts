@@ -11,9 +11,9 @@ export const HOME: Metadata = {
   DESCRIPTION: "Home.",
 };
 
-export const BLOG: Metadata = {
-  TITLE: "Blog",
-  DESCRIPTION: "Posts.",
+export const OS: Metadata = {
+  TITLE: "OS",
+  DESCRIPTION: "Kernel from scratch.",
 };
 
 export const ABOUT_ME: Metadata = {
@@ -40,7 +40,7 @@ export const CATEGORY_CARD_ENTRIES: Record<PostCategory, CardEntry> = {
   [PostCategory.X86]: {
     title: "x86",
     description: "32 bits x86 implementation.",
-    url: `/blog/${PostCategory.X86}`,
+    url: `/os/${PostCategory.X86}`,
   },
 };
 

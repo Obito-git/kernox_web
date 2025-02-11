@@ -2,7 +2,6 @@
 import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
-import Link from "@components/Link.astro";
 import {HOME, CATEGORY_CARD_ENTRIES, PostCategory} from "@consts";
 ---
 
@@ -16,7 +15,8 @@ import {HOME, CATEGORY_CARD_ENTRIES, PostCategory} from "@consts";
             <section>
                 <article class="space-y-4">
                     <p class="animate">
-                        This series is intended to focus on building a Rust kernel from scratch for 32-bit systems in its early stages.
+                        This series is intended to focus on building a Rust kernel from scratch for 32-bit systems in
+                        its early stages.
                         64-bit support will come later, probably along with implementations for ARM or RISC-V.
                     </p>
                     <p class="animate">
@@ -24,17 +24,15 @@ import {HOME, CATEGORY_CARD_ENTRIES, PostCategory} from "@consts";
                         I will mainly publish my LeetCode solutions here until my summer vacation in 2025.
                     </p>
                     <p class="animate">
-                        I plan to keep some kernel pages as a reminder to work on it every time I visit this site. Have fun!
+                        I plan to keep some kernel pages as a reminder to work on it every time I visit this site. Have
+                        fun!
                     </p>
                 </article>
 
             </section>
 
             <section class="animate space-y-6">
-                <div class="flex flex-wrap gap-y-2 items-center justify-between">
-                    <h5 class="font-semibold text-black dark:text-white">Categories</h5>
-                    <Link href="/blog"> See all posts</Link>
-                </div>
+                <h5 class="font-semibold text-black dark:text-white">Categories</h5>
                 <ul class="flex flex-col gap-4">
                     {
                         Object.values(PostCategory).map((category: PostCategory) => (

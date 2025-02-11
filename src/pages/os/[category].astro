@@ -5,7 +5,7 @@ import Container from "@components/Container.astro";
 import CategoryList from "@components/CategoryList.astro";
 
 export async function getStaticPaths() {
-    const allPosts = (await getCollection("blog")).filter(
+    const allPosts = (await getCollection("os")).filter(
         (post) => !post.data.draft,
     );
     const categories = new Set(allPosts.map((post) => post.data.category));
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
     }));
 }
 
-const allPosts = (await getCollection("blog")).filter(
+const allPosts = (await getCollection("os")).filter(
     (post) => !post.data.draft,
 );
 
@@ -22,7 +22,7 @@ const { category } = Astro.params;
 const selectedCategory = category as string;
 
 interface SubcategoryGroup {
-    [subcategory: string]: CollectionEntry<"blog">[];
+    [subcategory: string]: CollectionEntry<"os">[];
 }
 
 interface CategoryGroup {
@@ -50,7 +50,7 @@ const groupedPosts: CategoryGroup = allPosts.reduce(
 ---
 
 <PageLayout
-    title={`Blog - ${selectedCategory}`}
+    title={`OS - ${selectedCategory}`}
     description={`Posts under ${selectedCategory}`}
 >
     <Container>
@@ -58,7 +58,7 @@ const groupedPosts: CategoryGroup = allPosts.reduce(
             <h1
                 class="animate font-semibold text-black dark:text-white text-3xl"
             >
-                Blog - {selectedCategory}
+                OS - {selectedCategory}
             </h1>
             <CategoryList
                 groupedPosts={groupedPosts}

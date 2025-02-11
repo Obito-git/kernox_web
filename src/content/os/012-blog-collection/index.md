@@ -1,6 +1,6 @@
 ---
 title: "Blog Collection"
-description: "How to add posts to your blog."
+description: "How to add posts to your os."
 category: "X86"
 subcategory: "draft"
 draft: true
