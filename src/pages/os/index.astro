@@ -3,7 +3,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import CategoryList from "@components/CategoryList.astro";
-import { OS } from "@consts";
+import { OS_PAGE_METADATA } from "@consts";
 
 const allPosts = (await getCollection("os")).filter(
   (post) => !post.data.draft,
@@ -37,7 +37,7 @@ const groupedPosts: CategoryGroup = allPosts.reduce(
 );
 ---
 
-<PageLayout title={OS.TITLE} description={OS.DESCRIPTION}>
+<PageLayout title={OS_PAGE_METADATA.TITLE} description={OS_PAGE_METADATA.DESCRIPTION}>
   <Container>
     <div class="space-y-10">
       <h1 class="animate font-semibold text-black dark:text-white text-3xl">
