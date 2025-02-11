@@ -1,4 +1,4 @@
-import { PostCategory, SubCategory } from "@os/consts";
+import { OsPostCategory, OsPostSubCategory } from "@os/consts";
 import type { CardEntry } from "@types";
 import { defineCollection, z, type CollectionEntry } from "astro:content";
 
@@ -7,8 +7,8 @@ const os = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.nativeEnum(PostCategory),
-    subcategory: z.nativeEnum(SubCategory),
+    category: z.nativeEnum(OsPostCategory),
+    subcategory: z.nativeEnum(OsPostSubCategory),
     draft: z.boolean().optional()
   }),
 });

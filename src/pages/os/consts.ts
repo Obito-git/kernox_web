@@ -1,19 +1,19 @@
 import { type CardEntry } from "@types";
 
-export enum PostCategory {
+export enum OsPostCategory {
     X86 = "X86",
 }
 
-export const CATEGORY_CARD_ENTRIES: Record<PostCategory, CardEntry> = {
-    [PostCategory.X86]: {
+export const OS_CATEGORY_CARD_ENTRIES: Record<OsPostCategory, CardEntry> = {
+    [OsPostCategory.X86]: {
         title: "x86",
         description: "32 bits x86 implementation.",
-        url: `/os/${PostCategory.X86}`,
+        url: `/os/${OsPostCategory.X86}`,
     },
 };
 
 
-export enum SubCategory {
+export enum OsPostSubCategory {
     INTRODUCTION = "Introduction",
     DRAFT = "draft"
 }
