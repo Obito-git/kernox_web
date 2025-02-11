@@ -4,7 +4,7 @@ import { type Site, type Metadata, type Socials, SitePage } from "@types";
 export const SITE: Site = {
     name: "kernOx",
     slug: "rust kernel from scratch",
-    email: "antonmyroshnychenko@gmail.com",
+    email: "anton@kernox.me",
 };
 
 export const PAGE_METADATA: Record<SitePage, Metadata> = {
