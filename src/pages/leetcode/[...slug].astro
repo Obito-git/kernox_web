@@ -7,13 +7,15 @@ import BackToPrev from "@components/BackToPrev.astro";
 import { PAGE_METADATA } from "@const/global";
 
 export async function getStaticPaths() {
-  const posts = (await getCollection("os")).filter((post) => !post.data.draft);
+  const posts = (await getCollection("leetcode")).filter(
+    (post) => !post.data.draft,
+  );
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
   }));
 }
-type Props = CollectionEntry<"os">;
+type Props = CollectionEntry<"leetcode">;
 
 const post = Astro.props;
 const { Content } = await post.render();
@@ -22,7 +24,9 @@ const { Content } = await post.render();
 <PageLayout title={post.data.title} description={post.data.description}>
   <Container>
     <div class="animate">
-      <BackToPrev href={PAGE_METADATA.os.url}> Back to OS </BackToPrev>
+      <BackToPrev href={PAGE_METADATA.leetcode.url}>
+        Back to problems
+      </BackToPrev>
     </div>
     <div class="space-y-1 my-10">
       <div class="animate flex items-center gap-1.5">

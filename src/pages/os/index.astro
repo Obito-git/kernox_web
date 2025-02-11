@@ -1,9 +1,9 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import CategoryList from "@components/CategoryList.astro";
-import { PAGE_METADATA } from "@consts";
+import { PAGE_METADATA } from "@const/global";
+import PageLayout from "@layouts/PageLayout.astro";
 
 const allPosts = (await getCollection("os")).filter((post) => !post.data.draft);
 

@@ -1,13 +1,23 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import CategoryList from "@components/CategoryList.astro";
-import { PAGE_METADATA } from "@const/global";
 
-const allPosts = (await getCollection("leetcode")).filter(
-    (post) => !post.data.draft,
-);
+export async function getStaticPaths() {
+    const allPosts = (await getCollection("leetcode")).filter(
+        (post) => !post.data.draft,
+    );
+    const categories = new Set(allPosts.map((post) => post.data.category));
+    return Array.from(categories).map((category) => ({
+        params: { category },
+    }));
+}
+
+const allPosts = (await getCollection("leetcode")).filter((post) => !post.data.draft);
+
+const { category } = Astro.params;
+const selectedCategory = category as string;
 
 interface SubcategoryGroup {
     [subcategory: string]: CollectionEntry<"leetcode">[];
@@ -38,17 +48,20 @@ const groupedPosts: CategoryGroup = allPosts.reduce(
 ---
 
 <PageLayout
-    title={PAGE_METADATA.leetcode.title}
-    description={PAGE_METADATA.leetcode.title}
+    title={`Leetcode - ${selectedCategory}`}
+    description={`Posts under ${selectedCategory}`}
 >
     <Container>
         <div class="space-y-10">
             <h1
                 class="animate font-semibold text-black dark:text-white text-3xl"
             >
-                Leetcode
+                Leetcode - {selectedCategory}
             </h1>
-            <CategoryList groupedPosts={groupedPosts} />
+            <CategoryList
+                groupedPosts={groupedPosts}
+                selectedCategory={selectedCategory}
+            />
         </div>
     </Container>
 </PageLayout>
