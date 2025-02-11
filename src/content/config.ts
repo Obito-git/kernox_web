@@ -1,4 +1,4 @@
-import { PostCategory, SubCategory } from "@consts";
+import { PostCategory, SubCategory } from "@os/consts";
 import type { CardEntry } from "@types";
 import { defineCollection, z, type CollectionEntry } from "astro:content";
 
