@@ -1,19 +1,34 @@
 import { type CardEntry } from "@types";
+import { PAGE_METADATA } from "./global";
 
 
 export enum ProblemCategory {
-    Easy = "Easy",
+    ARRAY_AND_HASHING = "Arrays & Hashing",
+    STACK = "Stack"
 }
 
+// My categories
 export const CATEGORY_CARD_ENTRIES: Record<ProblemCategory, CardEntry> = {
-    [ProblemCategory.Easy]: {
-        title: "Title lol",
-        description: "Description of cat.",
-        url: `/os/${ProblemCategory.Easy}`,
+    [ProblemCategory.ARRAY_AND_HASHING]: {
+        title: ProblemCategory.ARRAY_AND_HASHING,
+        description: "Make it optional.",
+        url: `${PAGE_METADATA.leetcode.url}/${ProblemCategory.ARRAY_AND_HASHING}`,
+    },
+    [ProblemCategory.STACK]: {
+        title: ProblemCategory.STACK,
+        description: "Make it optional.",
+        url: `${PAGE_METADATA.leetcode.url}/${ProblemCategory.STACK}`,
     },
 };
 
-
+// Leetcode topic
 export enum ProblemSubCategory {
-    HashMap = "HashMap"
+    HASH_TABLE = "Hash table",
+    ARRAY = "Array"
+}
+
+export enum ProblemDifficulty {
+    EASY = "Easy",
+    MEDIUM = "Medium",
+    HARD = "Hard"
 }

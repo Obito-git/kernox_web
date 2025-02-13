@@ -1,5 +1,5 @@
 import { OsPostCategory, OsPostSubCategory } from "@const/os";
-import { ProblemCategory, ProblemSubCategory } from "@const/leetcode";
+import { ProblemCategory, ProblemDifficulty, ProblemSubCategory } from "@const/leetcode";
 import type { CardEntry } from "@types";
 import { defineCollection, z, type CollectionEntry } from "astro:content";
 
@@ -17,10 +17,12 @@ const os = defineCollection({
 const leetcode = defineCollection({
   type: "content",
   schema: z.object({
+    num: z.number(),
     title: z.string(),
-    description: z.string(),
     category: z.nativeEnum(ProblemCategory),
-    subcategory: z.nativeEnum(ProblemSubCategory),
+    subcategories: z.array(z.nativeEnum(ProblemSubCategory)),
+    difficulty: z.nativeEnum(ProblemDifficulty),
+    url: z.string(),
     draft: z.boolean().optional()
   }),
 });

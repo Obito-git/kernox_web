@@ -14,7 +14,9 @@ export async function getStaticPaths() {
     }));
 }
 
-const allPosts = (await getCollection("leetcode")).filter((post) => !post.data.draft);
+const allPosts = (await getCollection("leetcode")).filter(
+    (post) => !post.data.draft,
+);
 
 const { category } = Astro.params;
 const selectedCategory = category as string;
@@ -29,8 +31,9 @@ interface CategoryGroup {
 
 const groupedPosts: CategoryGroup = allPosts.reduce(
     (acc: CategoryGroup, post) => {
-        const { category, subcategory } = post.data;
-        const safeSubcategory = subcategory || "Uncategorized";
+        const { category, subcategories } = post.data;
+        //const safeSubcategory = subcategories || "Uncategorized";
+        const safeSubcategory = "Uncategorized";
 
         if (!acc[category]) {
             acc[category] = {};

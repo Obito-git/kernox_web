@@ -19,8 +19,9 @@ interface CategoryGroup {
 
 const groupedPosts: CategoryGroup = allPosts.reduce(
     (acc: CategoryGroup, post) => {
-        const { category, subcategory } = post.data;
-        const safeSubcategory = subcategory || "Uncategorized";
+        const { category, subcategories } = post.data;
+        //        const safeSubcategory = "Uncategorized";
+        const safeSubcategory = "Uncategorized";
 
         if (!acc[category]) {
             acc[category] = {};
