@@ -80,3 +80,17 @@ html.scrolled #back-to-top {
   font-weight: bold;
   color: #000;
 }
+
+:root {
+  --pagefind-ui-primary: #1f2937;
+  --pagefind-ui-background: #f5f5f5;
+  --pagefind-ui-border: #d1d5db;
+  --pagefind-ui-text: #1f2937;
+}
+
+html.dark {
+  --pagefind-ui-primary: #f5f5f5; 
+  --pagefind-ui-background: #18181b; 
+  --pagefind-ui-border: #374151; 
+  --pagefind-ui-text: #f5f5f5;
+}

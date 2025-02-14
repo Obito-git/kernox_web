@@ -1,3 +1,5 @@
+import type { ProblemDifficulty } from "@const/leetcode";
+
 export type Site = {
     name: string;
     slug: string;
@@ -24,6 +26,12 @@ export type Socials = {
 
 export interface CardEntry {
     title: string;
-    description: string;
+    description?: string;
+    url: string;
+}
+
+export interface ProblemCardEntry {
+    title: string;
+    difficulty: ProblemDifficulty;
     url: string;
 }

@@ -4,6 +4,7 @@ import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import BackToPrev from "@components/BackToPrev.astro";
 import { PAGE_METADATA } from "@const/global";
+import ProblemHeader from "@components/leetcode/ProblemHeader.astro";
 
 export async function getStaticPaths() {
   const posts = (await getCollection("leetcode")).filter(
@@ -27,6 +28,9 @@ const { Content } = await post.render();
         Back to problems
       </BackToPrev>
     </div>
-    <Content />
+    <article class="animate">
+      <ProblemHeader {...post.data} />
+      <Content />
+    </article>
   </Container>
 </PageLayout>

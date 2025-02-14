@@ -1,8 +1,12 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
-import CategoryList from "@components/CategoryList.astro";
+import ProblemArrowCard from "@components/leetcode/ProblemArrowCard.astro";
+import { mapToProblemCardEntry } from "@content/config";
+import { difficultyOrder } from "@const/leetcode";
+import BackToPrev from "@components/BackToPrev.astro";
+import { PAGE_METADATA } from "@const/global";
 
 export async function getStaticPaths() {
     const allPosts = (await getCollection("leetcode")).filter(
@@ -21,33 +25,16 @@ const allPosts = (await getCollection("leetcode")).filter(
 const { category } = Astro.params;
 const selectedCategory = category as string;
 
-interface SubcategoryGroup {
-    [subcategory: string]: CollectionEntry<"leetcode">[];
-}
-
-interface CategoryGroup {
-    [category: string]: SubcategoryGroup;
-}
-
-const groupedPosts: CategoryGroup = allPosts.reduce(
-    (acc: CategoryGroup, post) => {
-        const { category, subcategories } = post.data;
-        //const safeSubcategory = subcategories || "Uncategorized";
-        const safeSubcategory = "Uncategorized";
-
-        if (!acc[category]) {
-            acc[category] = {};
-        }
-
-        if (!acc[category][safeSubcategory]) {
-            acc[category][safeSubcategory] = [];
-        }
-
-        acc[category][safeSubcategory].push(post);
-        return acc;
-    },
-    {},
+const postsForCategory = allPosts.filter(
+    (post) => post.data.category === selectedCategory,
 );
+
+//TODO: improve, I want to sleep right now :(
+const sortedPosts = postsForCategory.sort((a, b) => {
+    const aDiff = difficultyOrder[a.data.difficulty] ?? 99;
+    const bDiff = difficultyOrder[b.data.difficulty] ?? 99;
+    return aDiff - bDiff;
+});
 ---
 
 <PageLayout
@@ -61,10 +48,24 @@ const groupedPosts: CategoryGroup = allPosts.reduce(
             >
                 Leetcode - {selectedCategory}
             </h1>
-            <CategoryList
-                groupedPosts={groupedPosts}
-                selectedCategory={selectedCategory}
-            />
+            <div class="animate">
+                <BackToPrev href={PAGE_METADATA.leetcode.url}>
+                    Back to problems
+                </BackToPrev>
+            </div>
+            <div class="animate space-y-4">
+                <ul class="flex flex-col gap-4">
+                    {
+                        sortedPosts.map((post) => (
+                            <li {...{ key: post.slug as string }}>
+                                <ProblemArrowCard
+                                    entry={mapToProblemCardEntry(post)}
+                                />
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
         </div>
     </Container>
 </PageLayout>

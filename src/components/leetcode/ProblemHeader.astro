@@ -2,7 +2,6 @@
 const { num, title, category, subcategories, difficulty, url } = Astro.props;
 ---
 
-<article>
     <section class="animate my-5">
         <h1 class="mb-4">{num}. {title}</h1>
         <div class="flex flex-wrap gap-4 text-xs">
@@ -40,7 +39,3 @@ const { num, title, category, subcategories, difficulty, url } = Astro.props;
         </div>
     </section>
     <hr class="my-4 border-gray-300" />
-    <main class="py-4">
-        <slot />
-    </main>
-</article>

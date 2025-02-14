@@ -3,7 +3,7 @@ title: "MDX syntax guide"
 description: "Get started writing mdx in markdown."
 category: "X86"
 subcategory: "draft"
-draft: false
+draft: true
 ---
 
 MDX is largely an extension of markdown with the ability to import `.astro`,
@@ -21,15 +21,6 @@ Importing a component from the `/components` directory.
 
 This component will accept a javascript date object and format it as a string.
 
-```astro
-import DateComp from "../../../components/FormattedDate.astro";
-
-<DateComp date={new Date()} />
-```
-
-import FormattedDate from "../../../components/FormattedDate.astro";
-
-<FormattedDate date={new Date()} />
 
 ---
 

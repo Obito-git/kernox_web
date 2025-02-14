@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
-import CategoryList from "@components/CategoryList.astro";
+import CategoryList from "@components/os/CategoryList.astro";
 
 export async function getStaticPaths() {
     const allPosts = (await getCollection("os")).filter(
