@@ -1,5 +1,7 @@
 ## kernOx website
 
+deployed prod link: [https://kernox.me/](https://kernox.me/)
+
 ### Code todo:
 
 - add more problems with different difficulty to insure the sort by difficulty works fine
