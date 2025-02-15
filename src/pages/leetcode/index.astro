@@ -3,20 +3,20 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import Search from "astro-pagefind/components/Search";
-import { PAGE_METADATA } from "@const/global";
+import { ContentCollection, PAGE_METADATA } from "@const/global";
 import ProblemArrowCard from "@components/leetcode/ProblemArrowCard.astro";
 import { mapToProblemCardEntry } from "@content/config";
-import { difficultyOrder } from "@const/leetcode";
+import { sortProblemsByDifficulty } from "@lib/utils";
 
-const allPosts = (await getCollection("leetcode")).filter(
-    (post) => !post.data.draft,
-);
+const allProblems: CollectionEntry<typeof ContentCollection.LEETCODE>[] = (
+    await getCollection(ContentCollection.LEETCODE)
+).filter((problem) => !problem.data.draft);
 
 type Acc = {
-    [category: string]: CollectionEntry<"leetcode">[];
+    [category: string]: CollectionEntry<ContentCollection.LEETCODE>[];
 };
 
-const posts = allPosts.reduce((acc: Acc, problem) => {
+const problems: Acc = allProblems.reduce((acc: Acc, problem) => {
     const category = problem.data.category;
     if (!acc[category]) {
         acc[category] = [];
@@ -25,7 +25,7 @@ const posts = allPosts.reduce((acc: Acc, problem) => {
     return acc;
 }, {});
 
-const categories = Object.keys(posts);
+const categories = Object.keys(problems);
 ---
 
 <PageLayout
@@ -49,35 +49,29 @@ const categories = Object.keys(posts);
             <div class="animate space-y-4">
                 {
                     categories.map((category) => {
-                        //TODO: improve, I want to sleep right now :(
-                        const sortedPosts = posts[category]
-                            .slice()
-                            .sort((a, b) => {
-                                const aDiff =
-                                    difficultyOrder[a.data.difficulty] ?? 99;
-                                const bDiff =
-                                    difficultyOrder[b.data.difficulty] ?? 99;
-                                return aDiff - bDiff;
-                            });
+                        const sortedProblems = sortProblemsByDifficulty(
+                            problems[category],
+                        );
                         return (
                             <section
                                 {...{ key: { category } }}
                                 class="animate space-y-4"
                             >
+                                {" "}
                                 <div class="font-semibold text-black dark:text-white">
                                     {category}
                                 </div>
                                 <div>
                                     <ul class="flex flex-col gap-4">
-                                        {sortedPosts.map((post) => (
+                                        {sortedProblems.map((problem) => (
                                             <li
                                                 {...{
-                                                    key: post.slug as string,
+                                                    key: problem.slug as string,
                                                 }}
                                             >
                                                 <ProblemArrowCard
                                                     entry={mapToProblemCardEntry(
-                                                        post,
+                                                        problem,
                                                     )}
                                                 />
                                             </li>

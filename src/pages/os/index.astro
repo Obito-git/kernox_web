@@ -2,13 +2,15 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import Container from "@components/Container.astro";
 import CategoryList from "@components/os/CategoryList.astro";
-import { PAGE_METADATA } from "@const/global";
+import { ContentCollection, PAGE_METADATA } from "@const/global";
 import PageLayout from "@layouts/PageLayout.astro";
 
-const allPosts = (await getCollection("os")).filter((post) => !post.data.draft);
+const allPosts = (await getCollection(ContentCollection.OS)).filter(
+  (post) => !post.data.draft,
+);
 
 interface SubcategoryGroup {
-  [subcategory: string]: CollectionEntry<"os">[];
+  [subcategory: string]: CollectionEntry<ContentCollection.OS>[];
 }
 
 interface CategoryGroup {

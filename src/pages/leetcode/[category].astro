@@ -1,45 +1,51 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import ProblemArrowCard from "@components/leetcode/ProblemArrowCard.astro";
 import { mapToProblemCardEntry } from "@content/config";
-import { difficultyOrder } from "@const/leetcode";
 import BackToPrev from "@components/BackToPrev.astro";
-import { PAGE_METADATA } from "@const/global";
+import { ContentCollection, PAGE_METADATA } from "@const/global";
+import { sortProblemsByDifficulty } from "@lib/utils";
 
 export async function getStaticPaths() {
-    const allPosts = (await getCollection("leetcode")).filter(
-        (post) => !post.data.draft,
+    const allProblems: CollectionEntry<typeof ContentCollection.LEETCODE>[] = (
+        await getCollection(ContentCollection.LEETCODE)
+    ).filter(
+        (problem: CollectionEntry<typeof ContentCollection.LEETCODE>) =>
+            !problem.data.draft,
     );
-    const categories = new Set(allPosts.map((post) => post.data.category));
+    const categories = new Set(
+        allProblems.map((problem) => problem.data.category),
+    );
     return Array.from(categories).map((category) => ({
         params: { category },
     }));
 }
 
-const allPosts = (await getCollection("leetcode")).filter(
-    (post) => !post.data.draft,
+const allProblems: CollectionEntry<typeof ContentCollection.LEETCODE>[] = (
+    await getCollection(ContentCollection.LEETCODE)
+).filter(
+    (problem: CollectionEntry<typeof ContentCollection.LEETCODE>) =>
+        !problem.data.draft,
 );
 
-const { category } = Astro.params;
-const selectedCategory = category as string;
+const { category } = Astro.params as { category: string };
+const selectedCategory: string = category;
 
-const postsForCategory = allPosts.filter(
-    (post) => post.data.category === selectedCategory,
+const problemsForCategory: CollectionEntry<
+    typeof ContentCollection.LEETCODE
+>[] = allProblems.filter(
+    (problem) => problem.data.category === selectedCategory,
 );
 
-//TODO: improve, I want to sleep right now :(
-const sortedPosts = postsForCategory.sort((a, b) => {
-    const aDiff = difficultyOrder[a.data.difficulty] ?? 99;
-    const bDiff = difficultyOrder[b.data.difficulty] ?? 99;
-    return aDiff - bDiff;
-});
+const sortedProblem: CollectionEntry<typeof ContentCollection.LEETCODE>[] =
+    sortProblemsByDifficulty(problemsForCategory);
 ---
 
 <PageLayout
     title={`Leetcode - ${selectedCategory}`}
-    description={`Posts under ${selectedCategory}`}
+    description={`Problemss under ${selectedCategory}`}
 >
     <Container>
         <div class="space-y-10">
@@ -56,10 +62,10 @@ const sortedPosts = postsForCategory.sort((a, b) => {
             <div class="animate space-y-4">
                 <ul class="flex flex-col gap-4">
                     {
-                        sortedPosts.map((post) => (
-                            <li {...{ key: post.slug as string }}>
+                        sortedProblem.map((problem) => (
+                            <li {...{ key: problem.slug as string }}>
                                 <ProblemArrowCard
-                                    entry={mapToProblemCardEntry(post)}
+                                    entry={mapToProblemCardEntry(problem)}
                                 />
                             </li>
                         ))

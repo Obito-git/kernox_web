@@ -31,7 +31,9 @@ export enum ProblemSubCategory {
     DESIGN = "Design",
     TWO_POINTERS = "Two pointers",
     DYN_PROGRAMMING = "Dynamic programming",
-    MONOTONIC_STACK = "Monotonic Stack"
+    MONOTONIC_STACK = "Monotonic Stack",
+    STRING = "String",
+    MATH = "Math"
 }
 
 export enum ProblemDifficulty {

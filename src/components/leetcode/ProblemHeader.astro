@@ -2,40 +2,40 @@
 const { num, title, category, subcategories, difficulty, url } = Astro.props;
 ---
 
-    <section class="animate my-5">
-        <h1 class="mb-4">{num}. {title}</h1>
-        <div class="flex flex-wrap gap-4 text-xs">
-            <div
-                class="border rounded-lg p-2 hover:shadow-md transition"
-                title="Category"
-            >
-                {category}
-            </div>
-            <div
-                class="border rounded-lg p-2 hover:shadow-md transition"
-                title="Subcategories"
-            >
-                {subcategories.join(", ")}
-            </div>
-            <div
-                class="border rounded-lg p-2 hover:shadow-md transition"
-                title="Difficulty"
-            >
-                {difficulty}
-            </div>
-            <div
-                class="border rounded-lg p-2 hover:shadow-md transition"
-                title="Problem Details"
-            >
-                <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline"
-                >
-                    Leetcode
-                </a>
-            </div>
+<section class="animate my-5">
+    <h2 class="mb-4">{num}. {title}</h2>
+    <div class="flex flex-wrap gap-4 text-xs">
+        <div
+            class="border rounded-lg p-2 hover:shadow-md transition"
+            title="Category"
+        >
+            {category}
         </div>
-    </section>
-    <hr class="my-4 border-gray-300" />
+        <div
+            class="border rounded-lg p-2 hover:shadow-md transition"
+            title="Subcategories"
+        >
+            {subcategories.join(", ")}
+        </div>
+        <div
+            class="border rounded-lg p-2 hover:shadow-md transition"
+            title="Difficulty"
+        >
+            {difficulty}
+        </div>
+        <div
+            class="border rounded-lg p-2 hover:shadow-md transition"
+            title="Problem Details"
+        >
+            <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline"
+            >
+                Leetcode
+            </a>
+        </div>
+    </div>
+</section>
+<hr class="my-4 border-gray-300" />

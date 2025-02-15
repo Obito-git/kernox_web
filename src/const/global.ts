@@ -24,7 +24,7 @@ export const PAGE_METADATA: Record<SitePage, Metadata> = {
         url: "/about",
     },
     [SitePage.LEETCODE]: {
-        title: "LeetCode",
+        title: "Leetcode",
         description: "My LeetCode solutions.",
         url: "/leetcode",
     },
@@ -40,3 +40,8 @@ export const SOCIALS: Socials = [
         href: "https://www.linkedin.com/in/amyroshn/",
     }
 ];
+
+export enum ContentCollection {
+    LEETCODE = "leetcode",
+    OS = "os"
+}

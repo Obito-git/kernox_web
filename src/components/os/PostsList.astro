@@ -2,9 +2,10 @@
 import { type CollectionEntry } from "astro:content";
 import ArrowCard from "@components/os/ArrowCard.astro";
 import { mapToCardEntry } from "@content/config";
+import type { ContentCollection } from "@const/global";
 
 interface PostsListProps {
-    posts: CollectionEntry<"os">[];
+    posts: CollectionEntry<ContentCollection.OS>[];
 }
 
 const { posts } = Astro.props as PostsListProps;

@@ -2,6 +2,7 @@ import { OsPostCategory, OsPostSubCategory } from "@const/os";
 import { ProblemCategory, ProblemDifficulty, ProblemSubCategory } from "@const/leetcode";
 import type { CardEntry, ProblemCardEntry } from "@types";
 import { defineCollection, z, type CollectionEntry } from "astro:content";
+import type { ContentCollection } from "@const/global";
 
 const os = defineCollection({
   type: "content",
@@ -27,7 +28,7 @@ const leetcode = defineCollection({
   }),
 });
 
-export function mapToCardEntry(schema: CollectionEntry<"os">): CardEntry {
+export function mapToCardEntry(schema: CollectionEntry<ContentCollection.OS>): CardEntry {
   return {
     title: schema.data.title,
     description: schema.data.description,
@@ -35,7 +36,7 @@ export function mapToCardEntry(schema: CollectionEntry<"os">): CardEntry {
   };
 }
 
-export function mapToProblemCardEntry(schema: CollectionEntry<"leetcode">): ProblemCardEntry {
+export function mapToProblemCardEntry(schema: CollectionEntry<ContentCollection.LEETCODE>): ProblemCardEntry {
   return {
     title: `${schema.data.num}. ${schema.data.title}`,
     url: `/${schema.collection}/${schema.slug}`,

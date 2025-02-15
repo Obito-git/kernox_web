@@ -3,10 +3,12 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import CategoryList from "@components/os/CategoryList.astro";
+import { ContentCollection } from "@const/global";
 
 export async function getStaticPaths() {
-    const allPosts = (await getCollection("os")).filter(
-        (post) => !post.data.draft,
+    const allPosts = (await getCollection(ContentCollection.OS)).filter(
+        (post: CollectionEntry<typeof ContentCollection.OS>) =>
+            !post.data.draft,
     );
     const categories = new Set(allPosts.map((post) => post.data.category));
     return Array.from(categories).map((category) => ({
@@ -14,13 +16,15 @@ export async function getStaticPaths() {
     }));
 }
 
-const allPosts = (await getCollection("os")).filter((post) => !post.data.draft);
+const allPosts = (await getCollection(ContentCollection.OS)).filter(
+    (post) => !post.data.draft,
+);
 
 const { category } = Astro.params;
 const selectedCategory = category as string;
 
 interface SubcategoryGroup {
-    [subcategory: string]: CollectionEntry<"os">[];
+    [subcategory: string]: CollectionEntry<ContentCollection.OS>[];
 }
 
 interface CategoryGroup {
@@ -28,7 +32,10 @@ interface CategoryGroup {
 }
 
 const groupedPosts: CategoryGroup = allPosts.reduce(
-    (acc: CategoryGroup, post) => {
+    (
+        acc: CategoryGroup,
+        post: CollectionEntry<typeof ContentCollection.OS>,
+    ) => {
         const { category, subcategory } = post.data;
         const safeSubcategory = subcategory || "Uncategorized";
 

@@ -3,25 +3,25 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import BackToPrev from "@components/BackToPrev.astro";
-import { PAGE_METADATA } from "@const/global";
+import { ContentCollection, PAGE_METADATA } from "@const/global";
 import ProblemHeader from "@components/leetcode/ProblemHeader.astro";
 
 export async function getStaticPaths() {
-  const posts = (await getCollection("leetcode")).filter(
-    (post) => !post.data.draft,
+  const problems = (await getCollection(ContentCollection.LEETCODE)).filter(
+    (problem) => !problem.data.draft,
   );
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: post,
+  return problems.map((problem) => ({
+    params: { slug: problem.slug },
+    props: problem,
   }));
 }
-type Props = CollectionEntry<"leetcode">;
+type Props = CollectionEntry<ContentCollection.LEETCODE>;
 
-const post = Astro.props;
-const { Content } = await post.render();
+const problem = Astro.props;
+const { Content } = await problem.render();
 ---
 
-<PageLayout title={post.data.title} description={post.data.title}>
+<PageLayout title={problem.data.title} description={problem.data.title}>
   <Container>
     <div class="animate">
       <BackToPrev href={PAGE_METADATA.leetcode.url}>
@@ -29,7 +29,7 @@ const { Content } = await post.render();
       </BackToPrev>
     </div>
     <article class="animate">
-      <ProblemHeader {...post.data} />
+      <ProblemHeader {...problem.data} />
       <Content />
     </article>
   </Container>
