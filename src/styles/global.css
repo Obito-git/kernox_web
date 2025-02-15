@@ -89,8 +89,18 @@ html.scrolled #back-to-top {
 }
 
 html.dark {
-  --pagefind-ui-primary: #f5f5f5; 
-  --pagefind-ui-background: #18181b; 
-  --pagefind-ui-border: #374151; 
+  --pagefind-ui-primary: #f5f5f5;
+  --pagefind-ui-background: #18181b;
+  --pagefind-ui-border: #374151;
   --pagefind-ui-text: #f5f5f5;
+}
+
+.prose code {
+  background-color: #c9c7c7 !important;
+  color: #1f2937 !important;
+}
+
+html.dark .prose code {
+  background-color: #2f353f !important;
+  color: #f5f5f5 !important;
 }
