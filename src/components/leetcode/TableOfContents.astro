@@ -1,0 +1,64 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface NestedHeading extends MarkdownHeading {
+    children: NestedHeading[];
+}
+
+interface Props {
+    headings?: MarkdownHeading[];
+    nodes?: NestedHeading[];
+}
+
+let nodes: NestedHeading[] = [];
+const isTopLevel = !!Astro.props.headings;
+
+if (Astro.props.nodes) {
+    nodes = Astro.props.nodes as NestedHeading[];
+} else if (Astro.props.headings) {
+    const filteredHeadings = (Astro.props.headings as MarkdownHeading[]).filter(
+        (heading) => heading.text.trim().toLowerCase() !== "table of contents",
+    );
+    nodes = buildNestedHeadings(filteredHeadings);
+}
+
+function buildNestedHeadings(headings: MarkdownHeading[]): NestedHeading[] {
+    const nested: NestedHeading[] = [];
+    const stack = [{ children: nested, depth: 0 }];
+
+    for (const heading of headings) {
+        const node: NestedHeading = { ...heading, children: [] };
+
+        while (
+            stack.length > 0 &&
+            heading.depth <= stack[stack.length - 1].depth
+        ) {
+            stack.pop();
+        }
+
+        stack[stack.length - 1].children.push(node);
+
+        stack.push({ children: node.children, depth: heading.depth });
+    }
+
+    return nested;
+}
+---
+
+<nav>
+    {isTopLevel && <h2>Table of Contents</h2>}
+    <ul>
+        {
+            nodes.map((node) => (
+            
+
+                <li data-key={node.slug}>
+                    <a href={"#" + node.slug}>{node.text}</a>
+                    {node.children && node.children.length > 0 ? (
+                        <Astro.self nodes={node.children} />
+                    ) : null}
+                </li>
+            ))
+        }
+    </ul>
+</nav>

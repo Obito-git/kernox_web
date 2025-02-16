@@ -5,19 +5,27 @@ import Container from "@components/Container.astro";
 import BackToPrev from "@components/BackToPrev.astro";
 import { ContentCollection, PAGE_METADATA } from "@const/global";
 import ProblemHeader from "@components/leetcode/ProblemHeader.astro";
+import TableOfContents from "@components/leetcode/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const problems = (await getCollection(ContentCollection.LEETCODE)).filter(
     (problem) => !problem.data.draft,
   );
-  return problems.map((problem) => ({
+  const headingsArr = await Promise.all(
+    problems.map(async (problem) => {
+      const data = await problem.render();
+      return data.headings;
+    }),
+  );
+  return problems.map((problem, index) => ({
     params: { slug: problem.slug },
-    props: problem,
+    props: { ...problem, headings: headingsArr[index] },
   }));
 }
-type Props = CollectionEntry<ContentCollection.LEETCODE>;
 
-const problem = Astro.props;
+type Props = CollectionEntry<ContentCollection.LEETCODE> & { headings: any };
+
+const problem = Astro.props as Props;
 const { Content } = await problem.render();
 ---
 
@@ -30,6 +38,7 @@ const { Content } = await problem.render();
     </div>
     <article class="animate">
       <ProblemHeader {...problem.data} />
+      <TableOfContents headings={problem.headings} />
       <Content />
       <script
         is:inline
