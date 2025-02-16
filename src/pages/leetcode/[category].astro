@@ -63,7 +63,7 @@ const sortedProblem: CollectionEntry<typeof ContentCollection.LEETCODE>[] =
                 <ul class="flex flex-col gap-4">
                     {
                         sortedProblem.map((problem) => (
-                            <li {...{ key: problem.slug as string }}>
+                            <li data-key={problem.slug}>
                                 <ProblemArrowCard
                                     entry={mapToProblemCardEntry(problem)}
                                 />

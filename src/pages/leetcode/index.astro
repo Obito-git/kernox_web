@@ -45,6 +45,16 @@ const categories = Object.keys(problems);
                     className="pagefind-ui"
                     uiOptions={{ showImages: false }}
                 />
+                <div
+                    class="border-l-4 pl-4 mt-2 text-sm font-semibold text-black dark:text-white border-red-500 dark:border-yellow-500"
+                >
+                    <p>
+                        Right now, the search simply finds any occurrence on
+                        every site page. It will be improved once there are
+                        enough solved problems, allowing for more specific
+                        searches by name or category.
+                    </p>
+                </div>
             </div>
             <div class="animate space-y-4">
                 {
@@ -54,7 +64,7 @@ const categories = Object.keys(problems);
                         );
                         return (
                             <section
-                                {...{ key: { category } }}
+                                data-key={category}
                                 class="animate space-y-4"
                             >
                                 {" "}
@@ -64,11 +74,7 @@ const categories = Object.keys(problems);
                                 <div>
                                     <ul class="flex flex-col gap-4">
                                         {sortedProblems.map((problem) => (
-                                            <li
-                                                {...{
-                                                    key: problem.slug as string,
-                                                }}
-                                            >
+                                            <li data-key={problem.slug}>
                                                 <ProblemArrowCard
                                                     entry={mapToProblemCardEntry(
                                                         problem,
