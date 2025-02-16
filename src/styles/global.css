@@ -94,13 +94,3 @@ html.dark {
   --pagefind-ui-border: #374151;
   --pagefind-ui-text: #f5f5f5;
 }
-
-.prose code {
-  background-color: #c9c7c79c !important;
-  color: #1f2937 !important;
-}
-
-html.dark .prose code {
-  background-color: #636a7554 !important;
-  color: #f5f5f5 !important;
-}

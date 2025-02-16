@@ -21,6 +21,44 @@ const { title, description } = Astro.props;
     <Header />
     <main>
       <slot />
+      <script is:inline>
+        // copy code button for multi-line code blocks
+        (function () {
+          const copyButtonLabel = "Copy Code";
+          const codeBlocks = document.querySelectorAll("pre");
+
+          codeBlocks.forEach((pre) => {
+            const code = pre.querySelector("code");
+            if (!code) return;
+
+            if (code.innerText.split("\n").length <= 1) return;
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "relative";
+            pre.parentNode.insertBefore(wrapper, pre);
+            wrapper.appendChild(pre);
+
+            const button = document.createElement("button");
+            button.className =
+              "copy-code absolute top-2 right-2 bg-gray-700 text-white text-xs px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-600 focus:outline-none";
+            button.innerText = copyButtonLabel;
+            pre.classList.add("relative");
+            pre.appendChild(button);
+
+            button.addEventListener("click", async () => {
+              try {
+                await navigator.clipboard.writeText(code.innerText);
+                button.innerText = "Code Copied";
+                setTimeout(() => {
+                  button.innerText = copyButtonLabel;
+                }, 700);
+              } catch (err) {
+                console.error("Failed to copy code:", err);
+              }
+            });
+          });
+        })();
+      </script>
     </main>
     <Footer />
   </body>
