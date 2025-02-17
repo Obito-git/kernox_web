@@ -3,7 +3,7 @@ num: 1
 title: "Two sum"
 category: "Arrays & Hashing"
 subcategories: 
-        - "Hash table"
+        - "Hash Table"
         - "Array"
 difficulty: "Easy"
 url: "https://leetcode.com/problems/two-sum/description/"

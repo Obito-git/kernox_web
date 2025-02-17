@@ -25,7 +25,7 @@ export const CATEGORY_CARD_ENTRIES: Record<ProblemCategory, CardEntry> = {
 
 // Leetcode topic
 export enum ProblemSubCategory {
-    HASH_TABLE = "Hash table",
+    HASH_TABLE = "Hash Table",
     ARRAY = "Array",
     STACK = "Stack",
     DESIGN = "Design",
@@ -33,7 +33,8 @@ export enum ProblemSubCategory {
     DYN_PROGRAMMING = "Dynamic programming",
     MONOTONIC_STACK = "Monotonic Stack",
     STRING = "String",
-    MATH = "Math"
+    MATH = "Math",
+    SORTING = "Sorting"
 }
 
 export enum ProblemDifficulty {
