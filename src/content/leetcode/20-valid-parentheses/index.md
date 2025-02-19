@@ -38,7 +38,7 @@ An input string is valid if:
   - **Output:** `true`
 
 ### Constraints
-- `1 <= s.length <= 10^4`
+- 1 <= s.length <= 10<sup>4</sup>
 - `s` consists of parentheses only `'()[]{}'`.
 
 ## Test
@@ -79,7 +79,7 @@ impl Solution {
 
 ## Solutions
 
-### Bruteforce
+### Brute force
 
 We can break the problem into smaller parts. Essentially, the parentheses are valid only when each opening symbol is immediately followed by its corresponding closing symbol (e.g., (), {}, []). In our loop, we check if the string contains any of these sequences and remove them. If the string becomes empty after all removals, the parentheses are valid; otherwise, they are not.
 

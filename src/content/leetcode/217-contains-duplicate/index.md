@@ -42,8 +42,8 @@ Given an integer array `nums`, return `true` if any value appears **at least twi
 ### Constraints
 
 
-- `1 <= nums.length <= 105`
-- `-109 <= nums[i] <= 109`
+- 1 <= nums.length <= 10<sup>5</sup>
+- -10<sup>9</sup> <= nums[i] <= 10<sup>9</sup>
 
 ## Test
 
@@ -76,7 +76,7 @@ impl Solution {
 
 ## Solutions
 
-### Bruteforce
+### Brute force
 
 Although my brute-force solution wasn't accepted because it exceeded the time limit, it's still good to practice it. It's never a bad idea to refresh your knowledge on iterating with nested loops or, for example, how to solve it using only iterators.
 
@@ -95,7 +95,7 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
 }
 ```
 
-#### Iterators (bruteforce)
+#### Iterators (brute force)
 Exactly same logic that we used with nested loops, but using only iterators.
 
 ```rust
