@@ -68,12 +68,8 @@ fn main() {
 ## Prototype
 
 ```rust
-struct Solution; // should not be included when submit
-
-impl Solution {
-    pub fn is_valid(s: String) -> bool {
-        todo!()
-    }
+pub fn is_valid(s: String) -> bool {
+    todo!()
 }
 ```
 

@@ -65,12 +65,8 @@ fn main() {
 ## Prototype
 
 ```rust
-struct Solution; // should not be included when submit
-
-impl Solution {
-    pub fn contains_duplicate(nums: Vec<i32>) -> bool {
-        todo!()
-    }
+pub fn contains_duplicate(nums: Vec<i32>) -> bool {
+    todo!()
 }
 ```
 
@@ -100,9 +96,9 @@ Exactly same logic that we used with nested loops, but using only iterators.
 
 ```rust
 pub fn contains_duplicate(nums: Vec<i32>) -> bool {
-  nums.iter()
-    .enumerate()
-    .any(|(i, n)| nums.iter().skip(i + 1).any(|v| v == n))
+    nums.iter()
+        .enumerate()
+        .any(|(i, n)| nums.iter().skip(i + 1).any(|v| v == n))
 }
 ```
 

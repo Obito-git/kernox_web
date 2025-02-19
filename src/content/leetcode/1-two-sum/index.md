@@ -101,12 +101,8 @@ mod tests {
 ## Prototype
 
 ```rust
-struct Solution; // should not be included when submit
-
-impl Solution {
-    pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-       todo!() 
-    }
+pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+    todo!()
 }
 ```
 
