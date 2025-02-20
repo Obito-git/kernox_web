@@ -103,17 +103,23 @@ The stack solution allows us to solve the problem in a single iteration over the
 #### Valid example
 
 Let's consider a valid example: `"({})"`.
-
 ![Iteration 1: Encountering (](20-valid-parentheses-1.png "Iteration 1: Pushing ( onto the stack")  
+
+---
+
 We start the iteration with the `"("` symbol. Since it's an opening character, we push it onto the stack.
-
 ![Iteration 2: Encountering {](20-valid-parentheses-2.png "Iteration 2: Pushing { onto the stack")  
+
+---
+
 Next, we encounter `"{"`, which is also an opening character, so we push it onto the stack.
-
 ![Iteration 3: Encountering } and matching with {](20-valid-parentheses-3.png "Iteration 3: Matching } with { and popping from the stack")  
-Now, we encounter a closing character `"}"`. We compare it with the top of the stack. Since the top is `"{"`, they match, so we pop the stack.
 
+---
+
+Now, we encounter a closing character `"}"`. We compare it with the top of the stack. Since the top is `"{"`, they match, so we pop the stack.
 ![Iteration 4: Encountering ) and matching with (](20-valid-parentheses-4.png "Iteration 4: Matching ) with ( and popping from the stack")  
+
 Finally, we encounter `")"`. The top of the stack is `"("`, so we pop it. The iteration is complete and our stack is empty, which means the string is valid.
 
 #### Not valid examples and edge cases
@@ -121,14 +127,15 @@ Finally, we encounter `")"`. The top of the stack is `"("`, so we pop it. The it
 #### Example 1
 
 We can try `"(]"`.
-
-![Iteration 1: Encountering "("](20-valid-parentheses-notvalid-1-1.png "Iteration 1: Pushing ( onto the stack")
 We start with the opening `"("`, we push it onto the stack.
+![Iteration 1: Encountering "("](20-valid-parentheses-notvalid-1-1.png "Iteration 1: Pushing ( onto the stack")
 
+---
+
+The next character is a closing `"]"`. We compare it with the top of the stack where we store the opening characters in reverse order. It is `"("`, and it doesn't match. The string is not valid.
 ![Iteration 2: Encountering "\]" and comparing with the stack top](20-valid-parentheses-notvalid-1-2.png "Iteration 2: Comparing ] with the stack top")
-The next character is a closing `"]"`. We compare it with the top of the stack where we store the opening characters in reverse order.
 
-It is `"("`, and it doesn't match. The string is not valid.
+---
 
 #### Example 2
 

@@ -168,23 +168,26 @@ Thus, when we encounter the number `2` at index `0`, we find that `2` is present
 #### Edge Case
 
 Consider the example: `nums = [3,2,4]` with `target = 6`.
-
 ![Initial state](1-two-sum-edge-case-1.png "Initial state")
 
-For the first number, compute `6 - 3 = 3` and store `3` as a key in the hash map with the value `0` (the index of `3`).
+---
 
+For the first number, compute `6 - 3 = 3` and store `3` as a key in the hash map with the value `0` (the index of `3`).
 ![Iteration 1: Processing the first number (3)](1-two-sum-edge-case-2.png "Iteration 1: Processing the first number (3)")
 
-For the second number, compute `6 - 2 = 4` and store `4` as a key with the value `1` (the index of `2`).
+---
 
+For the second number, compute `6 - 2 = 4` and store `4` as a key with the value `1` (the index of `2`).
 ![Iteration 2: Processing the second number (2)](1-two-sum-edge-case-3.png "Iteration 2: Processing the second number (2)")
 
-For the third number, compute `6 - 4 = 2` and store `2` as a key with the value `2` (the index of `4`).
+---
 
+For the third number, compute `6 - 4 = 2` and store `2` as a key with the value `2` (the index of `4`).
 ![Iteration 3: Processing the third number (4)](1-two-sum-edge-case-4.png "Iteration 3: Processing the third number (4)")
 
-At this point, everything seems correct since `4 + 2 = 6`, so the answer should be `[1, 2]`. However, there's a subtle detail in our algorithm:
+---
 
+At this point, everything seems correct since `4 + 2 = 6`, so the answer should be `[1, 2]`. However, there's a subtle detail in our algorithm:
 ![Searching for a matching key](1-two-sum-edge-case-5.png "Searching for a matching key in the hash map")
 
 If the hash map contains a key representing a difference of `3` for the current number, that key corresponds to the number at index `0`. Without proper handling, the algorithm would incorrectly return `[0, 0]`—the same number twice. We must ensure that the value associated with the key providing this difference is not equal to the index of the current number.
