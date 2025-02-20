@@ -15,6 +15,7 @@ draft: false
 Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
 
 An input string is valid if:
+
 - Open brackets must be closed by the same type of brackets.
 - Open brackets must be closed in the correct order.
 - Every close bracket has a corresponding open bracket of the same type.
@@ -38,6 +39,7 @@ An input string is valid if:
   - **Output:** `true`
 
 ### Constraints
+
 - 1 <= s.length <= 10<sup>4</sup>
 - `s` consists of parentheses only `'()[]{}'`.
 
@@ -94,7 +96,6 @@ pub fn is_valid(mut s: String) -> bool {
 - **Time Complexity:** O(n²)  
 - **Space Complexity:** O(n)
 
-
 ### Stack
 
 The stack solution allows us to solve the problem in a single iteration over the given string. Essentially, we store our opening characters on a stack, and when we encounter a closing character, we compare it with the top of the stack. If they match, we pop the stack; otherwise, the string is invalid.
@@ -118,6 +119,7 @@ Finally, we encounter `")"`. The top of the stack is `"("`, so we pop it. The it
 #### Not valid examples and edge cases
 
 #### Example 1
+
 We can try `"(]"`.
 
 ![Iteration 1: Encountering "("](20-valid-parentheses-notvalid-1-1.png "Iteration 1: Pushing ( onto the stack")
@@ -129,13 +131,13 @@ The next character is a closing `"]"`. We compare it with the top of the stack w
 It is `"("`, and it doesn't match. The string is not valid.
 
 #### Example 2
+
 The string value is `"]"`.
 ![Iteration 1: Encountering \] with an empty stack](20-valid-parentheses-notvalid-2-1.png "Iteration 1: Encountering ] with an empty stack")
 
 The current character is `"]"`. We compare it with the top of the stack, but the stack is empty—this is an edge case that should be handled.
 
 #### Implementation
-
 
 ```rust
 pub fn is_valid(s: String) -> bool {
@@ -159,7 +161,6 @@ pub fn is_valid(s: String) -> bool {
     stack.is_empty()
 }
 ```
-
 
 - **Time Complexity:** O(n)  
 - **Space Complexity:** O(n)

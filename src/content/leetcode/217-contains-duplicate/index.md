@@ -38,9 +38,7 @@ Given an integer array `nums`, return `true` if any value appears **at least twi
 - **Input:** `nums = [1,1,1,3,3,4,3,2,4,2]`
 - **Output:** `true`
 
-
 ### Constraints
-
 
 - 1 <= nums.length <= 10<sup>5</sup>
 - -10<sup>9</sup> <= nums[i] <= 10<sup>9</sup>
@@ -77,6 +75,7 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
 Although my brute-force solution wasn't accepted because it exceeded the time limit, it's still good to practice it. It's never a bad idea to refresh your knowledge on iterating with nested loops or, for example, how to solve it using only iterators.
 
 #### Nested loops
+
 ```rust
 pub fn contains_duplicate(nums: Vec<i32>) -> bool {
     for i in 0..nums.len() {
@@ -92,6 +91,7 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
 ```
 
 #### Iterators (brute force)
+
 Exactly same logic that we used with nested loops, but using only iterators.
 
 ```rust
@@ -104,7 +104,6 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
 
 - **Time Complexity:** O(n²)  
 - **Space Complexity:** O(1)
-
 
 ### Sorting
 
@@ -165,6 +164,7 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
 ```
 
 #### Iterators (hash set)
+
 Using iterators, the solution is much shorter. We only need to check `if`, `during iteration` over `nums`, `any insertion returns false`, which indicates that the vector contains a duplicate.
 
 ```rust
@@ -173,7 +173,6 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
     nums.iter().any(|&v| !storage.insert(v))
 }
 ```
-
 
 - **Time Complexity:** O(n)  
 - **Space Complexity:** O(n)

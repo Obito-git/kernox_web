@@ -33,7 +33,6 @@ You can return the answer in any order.
   - **Input:** `nums = [3,3], target = 6`
   - **Output:** `[0,1]`
 
-
 ### Constraints
 
 - 2 <= nums.length <= 10<sup>4</sup>
@@ -112,7 +111,6 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
 
 The most obvious solution is just to try all variants.
 
-
 ```rust
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     for i in 0..nums.len() {
@@ -128,7 +126,6 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
 
 - **Time Complexity:** O(n²)  
 - **Space Complexity:** O(1)
-
 
 ### Hash Map
 
@@ -168,8 +165,6 @@ In the second iteration, our goal is to check if the current number appears as a
 
 Thus, when we encounter the number `2` at index `0`, we find that `2` is present as a key in the hash map (stored during the processing of `7` at index `1`). This indicates that the first number `2` and the number `7` complement each other to reach the target, resulting in the answer `[0, 1]`.
 
-
-
 #### Edge Case
 
 Consider the example: `nums = [3,2,4]` with `target = 6`.
@@ -193,7 +188,6 @@ At this point, everything seems correct since `4 + 2 = 6`, so the answer should 
 ![Searching for a matching key](1-two-sum-edge-case-5.png "Searching for a matching key in the hash map")
 
 If the hash map contains a key representing a difference of `3` for the current number, that key corresponds to the number at index `0`. Without proper handling, the algorithm would incorrectly return `[0, 0]`—the same number twice. We must ensure that the value associated with the key providing this difference is not equal to the index of the current number.
-
 
 #### Implementation
 
@@ -229,7 +223,6 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
 ### Hash Map with one pass
 
 Once we understand how the hash map solution works, it becomes much easier to eliminate the second iteration. As mentioned in the hash map implementation, the main challenge is that both numbers are unknown. However, we actually identify one number while creating the hash map, so we can perform this check during the iteration.
-
 
 ```rust
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
