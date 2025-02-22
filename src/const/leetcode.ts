@@ -34,7 +34,12 @@ export enum ProblemSubCategory {
     MONOTONIC_STACK = "Monotonic Stack",
     STRING = "String",
     MATH = "Math",
-    SORTING = "Sorting"
+    SORTING = "Sorting",
+    DEVIDE_AND_CONQUER = "Devide and Conquer",
+    HEAP_PRIORIRY_QUEUE = "Heap (Priority Queue)",
+    BUCKET_SORT = "Bucket Sort",
+    COUNTING = "Counting",
+    QUICK_SELECT = "Quick select"
 }
 
 export enum ProblemDifficulty {
