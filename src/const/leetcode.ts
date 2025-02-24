@@ -41,7 +41,8 @@ export enum ProblemSubCategory {
     COUNTING = "Counting",
     QUICK_SELECT = "Quick select",
     PREFIX_SUM = "Prefix Sum",
-    MATRIX = "Matrix"
+    MATRIX = "Matrix",
+    UNION_FIND = "Union Find"
 }
 
 export enum ProblemDifficulty {
