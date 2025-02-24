@@ -39,7 +39,8 @@ export enum ProblemSubCategory {
     HEAP_PRIORIRY_QUEUE = "Heap (Priority Queue)",
     BUCKET_SORT = "Bucket Sort",
     COUNTING = "Counting",
-    QUICK_SELECT = "Quick select"
+    QUICK_SELECT = "Quick select",
+    PREFIX_SUM = "Prefix Sum"
 }
 
 export enum ProblemDifficulty {
