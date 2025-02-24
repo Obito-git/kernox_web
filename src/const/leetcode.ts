@@ -40,7 +40,8 @@ export enum ProblemSubCategory {
     BUCKET_SORT = "Bucket Sort",
     COUNTING = "Counting",
     QUICK_SELECT = "Quick select",
-    PREFIX_SUM = "Prefix Sum"
+    PREFIX_SUM = "Prefix Sum",
+    MATRIX = "Matrix"
 }
 
 export enum ProblemDifficulty {
