@@ -208,7 +208,7 @@ pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
 
 I like to present brute force solutions because they are simpler and help in understanding the problem. However, in this case, I believe the **HashSet** solution is much simpler.
 
-There is also another solution using **bitwise operations** to reduce the **Space Complexity** to **O(n)**. //TODO
+There is also another solution using **bitwise operations** to reduce the **Space Complexity** to **O(n)**, I'll do it later.
 
 ### Hash Set
 
