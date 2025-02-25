@@ -12,8 +12,7 @@ deployed prod link: [https://kernox.me/](https://kernox.me/)
 - refactor the rendered subcategories on problem page, see 347. Top K Frequent Elements
 - make leetcode button more visible on the problem page
 
+### Problems todo
 
-### Problems todo:
-
-150. Evaluate Reverse Polish Notation - solve via recursion and DFA and probably find a solution to replace vec by linked list
+150. Evaluate Reverse Polish Notation - solve via recursion and DFA and probably find a solution to replace vec by linked list for brute force solution
 36. Valid Sudoku - solve using bitwise operators to reducte space complexity
